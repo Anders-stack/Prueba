@@ -1,0 +1,2469 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Copia de LAB_34.ipynb",
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Anders-stack/Prueba/blob/main/mod%204\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "gJwa5Wh7hw2P"
+      },
+      "source": [
+        "![973254_Cisco Networking Academy_Email Banner_10.7.16_mo.png](data:image/png;base64,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)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Kd11uZCbNZR6"
+      },
+      "source": [
+        "#\n",
+        "#Celda 0"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "725yHsFJOL9U"
+      },
+      "source": [
+        "##Módulo 4\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "LHTTx16x1nG6"
+      },
+      "source": [
+        "###Funciones\n",
+        "![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUGKzJag-819TSJTCnw9PGv6D9DrtOKK7skg&usqp=CAU)\n",
+        "\n",
+        "Una función es una porción o bloque de código reutilizable que se encarga de realizar una determinada tarea.\n",
+        "\n",
+        "\n",
+        "La sintaxis en python es:\n",
+        "\n",
+        "\n",
+        "![](https://cdn.programiz.com/sites/tutorial2program/files/python-how-function-works_1.jpg)\n",
+        "\n",
+        "La sintaxis para definir una función en python es:\n",
+        "![](https://j2logo.com/wp-content/uploads/esquema-funciones-python.png)\n",
+        "```python\n",
+        "# Creacion de función\n",
+        "def My_fun():\n",
+        "    #instrucciones\n",
+        "    #instrucciones\n",
+        "```\n",
+        "```python\n",
+        "# Invocación de función\n",
+        "My_fun()\n",
+        "\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4HXKSg4pDXr6"
+      },
+      "source": [
+        "####Mi primera función"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "r_hO9fGPBRtp"
+      },
+      "source": [
+        "#Celda 1\n",
+        "def fun():\n",
+        "    print(\"esto es mi primera funcion\")\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "lj632IfPDbwp"
+      },
+      "source": [
+        "####Ejemplo"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "c-smZH8IDgZR"
+      },
+      "source": [
+        "#Celda 2\n",
+        "def fun():\n",
+        "    nom=input(\"ingrese su nombre: \")\n",
+        "    print(\"hola\",nom)\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "HThokrA_ET61"
+      },
+      "source": [
+        "####Ejercicio 1\n",
+        "Escribir una función que muestre por pantalla el saludo ¡Hola amiga! cada vez que se la invoque."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "s3LjK9AxEX4R"
+      },
+      "source": [
+        "#Celda 3\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "vBrjmGiyGCey"
+      },
+      "source": [
+        "###Funciones con parámetros\n",
+        "\n",
+        "El potencial completo de una función se revela cuando puede ser equipada con una interface que es capaz de aceptar datos provenientes de la invocación. Dichos datos pueden modificar el comportamiento de la función, haciéndola mas flexible y adaptable a condiciones cambiantes.\n",
+        "\n",
+        "Un parámetro es una variable, pero existen dos factores que hacen a un parámetro diferente:\n",
+        "\n",
+        "* Los parámetros solo existen dentro de las funciones en donde han sido definidos, y el único lugar donde un parámetro puede ser definido es entre los paréntesis después del nombre de la función, donde se encuentra la palabra reservada def.\n",
+        "* La asignación de un valor a un parámetro de una función se hace en el momento en que la función se manda llamar o se invoca, especificando el argumento correspondiente.\n",
+        "```\n",
+        "def funcion(parametro):\n",
+        "    ###\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "JF_bvZtwGycK"
+      },
+      "source": [
+        "#Celda 4\n",
+        "def mensaje(numero):\n",
+        "    print(\"Ingresa el número:\", numero)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UiNIu-mSI3_Z"
+      },
+      "source": [
+        "###Funciones con parámetros: continuación\n",
+        "Una función puede tener tantos parámetros como se desee, pero entre más parámetros, es más difícil memorizar su rol y propósito."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "xe3PzrpWIr4Z"
+      },
+      "source": [
+        "#Celda 5\n",
+        "def mensaje(que, numero):\n",
+        "    print(\"Ingresa\", que, \"número\", numero)\n",
+        "    "
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1sjfuO3gJJ4f"
+      },
+      "source": [
+        "####Ejercicio 2\n",
+        "Escribir una función a la que se le pase una cadena `<nombre>` y muestre por pantalla el saludo `¡hola <nombre>!.`"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "aAdpjpD1JO70"
+      },
+      "source": [
+        "#Celda 6\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "DZ2uo5ESMsrm"
+      },
+      "source": [
+        "###Paso de parámetros posicionales\n",
+        "La técnica que asigna cada argumento al parámetro correspondiente, es llamada paso de parámetros posicionales, los argumentos pasados de esta manera son llamados argumentos posicionales."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "nlYXxzloMvbs"
+      },
+      "source": [
+        "####Ejemplo"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "YRbI0vqKMyEc"
+      },
+      "source": [
+        "#Celda 7\n",
+        "def miFuncion(a, b, c):\n",
+        "    print(a, b, c)\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "tCCZbNwaNMW2"
+      },
+      "source": [
+        "###Paso de argumentos con palabras clave\n",
+        "Python ofrece otra manera de pasar argumentos, donde el significado del argumento esta definido por su nombre, no su posición, a esto se le denomina paso de argumentos con palabras clave.\n",
+        "\n",
+        "Observa el siguiente código:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "g6NtgWwdNQ_x"
+      },
+      "source": [
+        "#Celda 8\n",
+        "def presentar (primerNombre, segundoNombre):\n",
+        "    print(\"Hola, mi nombre es\", primerNombre, segundoNombre)\n",
+        "\n",
+        "presentar(primerNombre = \"James\", segundoNombre = \"Bond\")\n",
+        "presentar(segundoNombre = \"Skywalker\", primerNombre = \"Luke\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "EkQipWH9Nje4"
+      },
+      "source": [
+        "El concepto es claro: los valores pasados a los parámetros son precedidos por el nombre del parámetro al que se le va a pasar el valor, seguido por el signo de =.\n",
+        "\n",
+        "La posición no es relevante aquí, cada argumento conoce su destino con base en el nombre utilizado."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "qbdNU77rN12x"
+      },
+      "source": [
+        "Por supuesto que no se debe de utilizar el nombre de un parámetro que no existe.\n",
+        "\n",
+        "El siguiente código provocará un error de ejecución:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "6fvwXDvaNupZ"
+      },
+      "source": [
+        "#Celda 9\n",
+        "def presentar (primerNombre, segundoNombre):\n",
+        "    print(\"Hola, mi nombre es \", primerNombre, segundoNombre)\n",
+        "\n",
+        "presentar(apellido=\"Skywalker\", primerNombre=\"Luke\")\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "usaT-v0fgM1V"
+      },
+      "source": [
+        "#Celda 10\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "J8g96KAXOxC1"
+      },
+      "source": [
+        "###El combinar argumentos posicionales y de palabras clave\n",
+        "Es posible combinar ambos tipos si se desea, solo hay una regla inquebrantable: se deben colocar primero los argumentos posicionales y después los de palabras clave.\n",
+        "\n",
+        "Piénsalo por un momento y entenderás el porque.\n",
+        "\n",
+        "Para mostrarte como funciona, se utilizara la siguiente función de tres parámetros:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "TT48QIVEPB4-"
+      },
+      "source": [
+        "#Celda 11\n",
+        "def suma(a, b, c):\n",
+        "    print(a, \"+\", b, \"+\", c, \"=\", a + b + c)\n",
+        "\n",
+        "# manda llamar la función suma aquí\n",
+        "suma(1,c=3,b=2)\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "CW4DqatWhK-E"
+      },
+      "source": [
+        "#Celda 12\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "T3mAjau9hOPL"
+      },
+      "source": [
+        "###Funciones con parámetros: mas detalles\n",
+        "En ocasiones ocurre que algunos valores de ciertos argumentos son mas utilizados que otros. Dichos argumentos tienen valores predefinidos los cuales pueden ser considerados cuando los argumentos correspondientes han sido omitidos.\n",
+        "\n",
+        "Uno de los apellidos más comunes en Latinoamérica es González. Tomémoslo para el ejemplo.\n",
+        "\n",
+        "El valor por default para el parámetro se asigna de la siguiente manera:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "0ezbyWALhbWy"
+      },
+      "source": [
+        "#Celda 13\n",
+        "def presentar(primerNombre, segundoNombre=\"González\"):\n",
+        "    print(\"Hola, mi nombre es\", primerNombre, segundoNombre)\n",
+        "\n",
+        "presentar(\"Jorge\", \"Pérez\")\n",
+        "presentar(\"Enrique\")\n",
+        "presentar (primerNombre=\"Guillermo\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "3Qx8YsJph06A"
+      },
+      "source": [
+        "#Celda 14\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "95HL_P3DRrai"
+      },
+      "source": [
+        "####Ejercicio 3\n",
+        "\n",
+        "¿Cuál es la salida del siguiente código?\n",
+        "```python\n",
+        "def intro(a=\"James Bond\", b=\"Bond\"):\n",
+        "    print(\"Mi nombre es\", b + \".\", a + \".\")\n",
+        "\n",
+        "intro()\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Mfb5ADWAR7xR"
+      },
+      "source": [
+        "#Celda 15\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "F6p7W2PISKcF"
+      },
+      "source": [
+        "####Ejercicio 4\n",
+        "\n",
+        "¿Cuál es la salida del siguiente código?\n",
+        "```python\n",
+        "def intro(a=\"James Bond\", b=\"Bond\"):\n",
+        "    print(\"Mi nombre es\", b + \".\", a + \".\")\n",
+        "\n",
+        "intro(b=\"Sergio López\")\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "hthmrkqTSPnp"
+      },
+      "source": [
+        "#Celda 16\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "pDgvHZyYUJfC"
+      },
+      "source": [
+        "####Ejercicio 5\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "def intro(a, b=\"Bond\"):\n",
+        "    print(\"Mi nombre es\", b + \".\", a + \".\")\n",
+        "\n",
+        "intro(\"Susan\")\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "hPPrYkc_V1Kx"
+      },
+      "source": [
+        "#Celda 17"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "vUFFUruISscT"
+      },
+      "source": [
+        "####Ejercicio 6\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "def suma(a, b=2, c):\n",
+        "    print(a + b + c)\n",
+        "\n",
+        "suma(a=1, c=3)\n",
+        "\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "vAfyteriTAle"
+      },
+      "source": [
+        "#Celda 18\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1ACHBnHWXOke"
+      },
+      "source": [
+        "###Efectos y resultados: la instrucción `return`\n",
+        "Todas las funciones presentadas anteriormente tienen algún tipo de efecto: producen un texto y lo envían a la consola.\n",
+        "\n",
+        "Por supuesto, las funciones, al igual que las funciones matemáticas, pueden tener resultados.\n",
+        "\n",
+        "Para lograr que las funciones devuelvan un valor (pero no solo para ese propósito) se utiliza la instrucción return (regresar o retornar).\n",
+        "\n",
+        "Esta palabra nos da una idea completa de sus capacidades. Nota: es una palabra reservada de Python.\n",
+        "\n",
+        "La instrucción return tiene dos variantes diferentes: considerémoslas por separado."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "h_X4o-FcYT8y"
+      },
+      "source": [
+        "###return sin una expresión\n",
+        "La primera consiste en la palabra reservada en sí, sin nada que la siga.\n",
+        "\n",
+        "Cuando se emplea dentro de una función, provoca la terminación inmediata de la ejecución de la función, y un retorno instantáneo (de ahí el nombre) al punto de invocación.\n",
+        "\n",
+        "Nota: si una función no está destinada a producir un resultado, emplear la instrucción  return no es obligatorio, se ejecutará implícitamente al final de la función.\n",
+        "\n",
+        "De cualquier manera, se puede emplear para terminar las actividades de una función, antes de que el control llegue a la última línea de la función."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2ShA4HBzXjoS"
+      },
+      "source": [
+        "#Celda 19\n",
+        "def felizAñoNuevo(deseos = True):\n",
+        "    print(\"Tres ...\")\n",
+        "    print(\"Dos ...\")\n",
+        "    print(\"Uno ...\")\n",
+        "    if not deseos:\n",
+        "        return\n",
+        "    \n",
+        "    print(\"¡Feliz año nuevo!\") \n",
+        "\n",
+        "felizAñoNuevo()"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "xor_06vOYaQH"
+      },
+      "source": [
+        "###return con una expresión\n",
+        "La segunda variante de return está extendida con una expresión:\n",
+        "\n",
+        "```python\n",
+        "funcion():\n",
+        "     return expresión\n",
+        "```\n",
+        "\n",
+        "Hay dos consecuencias de usarla:\n",
+        "\n",
+        "* Provoca la terminación inmediata de la ejecución de la función (nada nuevo en comparación con la primer variante).\n",
+        "* Además, la función evaluará el valor de la expresión y lo devolverá (de ahí el nombre una vez mas) como el resultado de la función.\n",
+        "\n",
+        "Este ejemplo es sencillo:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "YirtimRCYuu7"
+      },
+      "source": [
+        "#Celda 20\n",
+        "def funcion_aburrida():\n",
+        "    return 123\n",
+        "\n",
+        "x = funcion_aburrida()\n",
+        "\n",
+        "print (\"La funcion_aburrida ha devuelto su resultado. Es: \", x) "
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "QCeuXPSIZPbr"
+      },
+      "source": [
+        "###Unas pocas palabras acerca de `None`\n",
+        "Permítenos presentarte un valor muy curioso (para ser honestos, un valor que es ninguno) llamado None.\n",
+        "\n",
+        "Sus datos no representan valor razonable alguno; en realidad, no es un valor en lo absoluto; por lo tanto, no debe participar en ninguna expresión.\n",
+        "\n",
+        "Por ejemplo, un fragmento de código como el siguiente:\n",
+        "```python\n",
+        "print(None + 2)\n",
+        "```\n",
+        "\n",
+        "Solo hay dos tipos de circunstancias en las que None se puede usar de manera segura:\n",
+        "\n",
+        "* Cuando se le asigna a una variable (o se devuelve como el resultado de una función).\n",
+        "* Cuando se compara con una variable para diagnosticar su estado interno.\n",
+        "\n",
+        "Al igual que aquí:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "1YM7v64HaAhM"
+      },
+      "source": [
+        "#Celda 21\n",
+        "valor = None\n",
+        "if valor == None:\n",
+        "    print(\"Lo siento, no tienes ningún valor\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "CgZCOh39aQpV"
+      },
+      "source": [
+        "No olvides esto: si una función no devuelve un cierto valor utilizando una cláusula de expresión `return`, se asume que devuelve implícitamente `None`."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "HHWk-lIEbAoL"
+      },
+      "source": [
+        "###Algunas palabras acerca de None: continuación\n",
+        "Echa un vistazo al código en el editor.\n",
+        "\n",
+        "Es obvio que la función strangeFunction devuelve True cuando su argumento es par.\n",
+        "\n",
+        "¿Qué es lo que regresa de otra manera?\n",
+        "\n",
+        "Podemos usar el siguiente código para verificarlo:\n",
+        "```python\n",
+        "print(strangeFunction(2))\n",
+        "print(strangeFunction(1)) \n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "E1xeyRKFbOrz"
+      },
+      "source": [
+        "#Celda 22\n",
+        "def strangeFunction(n):\n",
+        "    if(n % 2 == 0):\n",
+        "        return True\n",
+        "\n",
+        "print(strangeFunction(2))\n",
+        "print(strangeFunction(1)) "
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ojNICQNTtPn1"
+      },
+      "source": [
+        "####Ejercicio 7 \n",
+        " Escriba una función  que reciba un número n, y devuelva :\n",
+        " \n",
+        "  $ n^2+n+1$"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "_9nh7tF5b0V2"
+      },
+      "source": [
+        "#Celda 23                     \n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "CVRpatezt9py"
+      },
+      "source": [
+        "####Ejercicio 8.-\n",
+        "Escriba una función  que reciba un numero n y que devuelva True si n es muliplo de 5, False en caso contrario"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ErRHW-lQcxu1"
+      },
+      "source": [
+        "#Celda 24\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "FEZGppdCdsyv"
+      },
+      "source": [
+        "###Efectos y resultados: listas y funciones\n",
+        "Hay dos preguntas adicionales que deben responderse aquí.\n",
+        "\n",
+        "El primero es: ¿Se puede enviar una lista a una función como un argumento?\n",
+        "\n",
+        "¡Por supuesto que se puede! Cualquier entidad reconocible por Python puede desempeñar el papel de un argumento de función, aunque debes asegurarte de que la función sea capaz de hacer uso de él.\n",
+        "\n",
+        "Entonces, si pasas una lista a una función, la función tiene que manejarla como una lista.\n",
+        "\n",
+        "Una función como la siguiente:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "SzBLsZk-du0s"
+      },
+      "source": [
+        "#Celda 25\n",
+        "def sumaDeLista(lst):\n",
+        "    sum = 0\n",
+        "    \n",
+        "    for elem in lst:\n",
+        "        sum += elem\n",
+        "    \n",
+        "    return sum\n",
+        "    \n",
+        "print(sumaDeLista([5, 4, 3])) "
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "xLgGSfF-eGL9"
+      },
+      "source": [
+        "###Efectos y resultados: listas y funciones - continuación\n",
+        "La segunda pregunta es: ¿Puede una lista ser el resultado de una función?\n",
+        "\n",
+        "¡Si, por supuesto! Cualquier entidad reconocible por Python puede ser un resultado de función.\n",
+        "\n",
+        "Observa el código en el editor. La salida del programa será así:\n",
+        "```\n",
+        "[4, 3, 2, 1, 0] \n",
+        "```\n",
+        "Ahora puedes escribir funciones con y sin resultados.\n",
+        "\n",
+        "Vamos a profundizar un poco más en los problemas relacionados con las variables en las funciones. Esto es esencial para crear funciones efectivas y seguras."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "glzUmTGOeMCt"
+      },
+      "source": [
+        "#Celda 26\n",
+        "def strangeListFunction(n):\n",
+        "    strangeList = []\n",
+        "    \n",
+        "    for i in range(0, n):\n",
+        "        strangeList.insert(0, i)\n",
+        "    \n",
+        "    return strangeList\n",
+        "\n",
+        "print(strangeListFunction(5))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "c513P-q0P0By"
+      },
+      "source": [
+        "####Ejemplo \n",
+        "\n",
+        "Escribir una funcion que reciba un año y devuelva True si el año es bisiesto, y que devuelva False si el año no es bisiesto.\n",
+        "\n",
+        "*Nota*: Un año es bisiesto si es divisible entre 4 y (no es divisible entre 100 o es divisible entre 400)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "XDoGc9g5e8kx"
+      },
+      "source": [
+        "primera opción:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "RgM3ezqje3qU"
+      },
+      "source": [
+        "#Celda 27\n",
+        "def isYearLeap(Year):\n",
+        "  p=False\n",
+        "  if Year % 4 == 0:\n",
+        "    if Year % 100 == 0:\n",
+        "      if Year % 400 == 0:\n",
+        "        p=True\n",
+        "      else:\n",
+        "        p=False\n",
+        "    else:\n",
+        "      p=True\n",
+        "  else:\n",
+        "    p=False\n",
+        "  return p \n",
+        "\n",
+        "year=int(input(\"Ingrese un año : \"))\n",
+        "if isLeap(year):\n",
+        "  print(\" el año:\",year,\"es bisiesto\")\n",
+        "else:\n",
+        "  print(\"el año:\",year,\"no es bisiesto\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "LZAvG6BNfBIr"
+      },
+      "source": [
+        "segunda opción:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "PpHUxuKmfDek"
+      },
+      "source": [
+        "#Celda 28\n",
+        "def isLeap(year):\n",
+        "  if (year%4==0) and ((not year%100==0)or (year%400==0)) :\n",
+        "    return True\n",
+        "  else:\n",
+        "    return False  \n",
+        "\n",
+        "year=int(input(\"Ingrese un año : \"))\n",
+        "if isLeap(year):\n",
+        "  print(\" el año:\",year,\"es bisiesto\")\n",
+        "else:\n",
+        "  print(\"el año:\",year,\"no es bisiesto\") "
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "TRpLbbwZC9Mj"
+      },
+      "source": [
+        "####Ejemplo  (LAB 4.1.3.7)\n",
+        "escribir un programa que pida un año y un mes e imprima el número de días de ese mes corresponirnte al año introducido.\n",
+        "vemos las siguiente tabla\n",
+        "..\n",
+        "\n",
+        "\n",
+        "\n",
+        "![dias_año.jpg](data:image/jpeg;base64,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) "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Oob0kzAUgWy1"
+      },
+      "source": [
+        "#Celda 29\n",
+        "def daysInMonth(y,m):\n",
+        "    days=None\n",
+        "    if m==2:\n",
+        "        if isLeap(y):\n",
+        "            days=29\n",
+        "        else:\n",
+        "            days=28\n",
+        "    else:\n",
+        "        if (m==1)or (m==3)or (m==5)or (m==7)or (m==8)or (m==10)or (m==12):\n",
+        "            days=31\n",
+        "        elif (m==4)or (m==6)or (m==9)or (m==11):\n",
+        "            days=30\n",
+        "\n",
+        "    return days           \n",
+        "    \n",
+        "\n",
+        "y=int(input(\"ingrese el años: \"))\n",
+        "m=int(input(\"ingrese el mes: \"))\n",
+        "days=daysInMonth(y,m)\n",
+        "print(days)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "LehgYPAuPuEs"
+      },
+      "source": [
+        "####Ejemplo  (LAB 4.1.3.8)\n",
+        " Escribir una función que tome tres argumentos, año, mes y día. Y devuelva el numero de día del año(de 1 a 366)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "LJCJOS5Sgzkk"
+      },
+      "source": [
+        "#Celda 30\n",
+        "def DayOfYear(year,month,day):\n",
+        "    day_Year=0\n",
+        "    \n",
+        "    for i in range(1,month):\n",
+        "        day_Year+=daysInMonth(year,i)\n",
+        "\n",
+        "    day_Year+=day\n",
+        "    return day_Year\n",
+        "\n",
+        "y=int(input(\"ingrese año\\n\"))\n",
+        "m=int(input(\"ingrese mes\\n\"))\n",
+        "d=int(input(\"ingrese dia\"))\n",
+        "print(DayOfYear(y,m,d))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "uhF6OitJoLJ6"
+      },
+      "source": [
+        "####Ejercicio 9\n",
+        "Escriba una funcion que reciba un número, y devuelva True si el número es primo, False en caso contrario"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ZalkiKVhheDD"
+      },
+      "source": [
+        "#Celda 31\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "lGHtM8mihwEK"
+      },
+      "source": [
+        "####Ejercicio 10\n",
+        "Escribir una función que reciba una muestra de números en una lista y devuelva su media."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "u5NAsuDShz4v"
+      },
+      "source": [
+        "#Celda 32\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Ai73N3BqiJ4_"
+      },
+      "source": [
+        "####Ejercicio 11\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "def hola():\n",
+        "    return\n",
+        "    print(\"¡Hola!\")\n",
+        "\n",
+        "hola()\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "0P_rdoIxiX99"
+      },
+      "source": [
+        "#Celda 33\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "x6vXxpmXibqd"
+      },
+      "source": [
+        "####Ejercicio 12\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "def isInt(data):\n",
+        "    if type(data) == int:\n",
+        "        return True\n",
+        "    elif type(data) == float:\n",
+        "        return False \n",
+        "    \n",
+        "print(isInt(5))\n",
+        "print(isInt(5.0))\n",
+        "print(isInt(\"5\"))\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "1aeaoGyNin60"
+      },
+      "source": [
+        "#Celda 34\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "fWJ-NSizisHt"
+      },
+      "source": [
+        "####Ejercicio 13\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "def evenNumLst(ran):\n",
+        "    lst = []\n",
+        "    for num in range(ran):\n",
+        "        if num % 2 == 0:\n",
+        "            lst.append(num)\n",
+        "    return lst\n",
+        "\n",
+        "print(evenNumLst(11))\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "U35LM3B2i1RB"
+      },
+      "source": [
+        "#Celda 35\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "S9MXqDSSi6Np"
+      },
+      "source": [
+        "####Ejercicio 14\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "def listUpdater(lst):\n",
+        "    updList = []\n",
+        "    for elem in lst:\n",
+        "        elem **= 2\n",
+        "        updList.append(elem)\n",
+        "    return updList\n",
+        "\n",
+        "l = [1, 2, 3, 4, 5]\n",
+        "print(listUpdater(l))\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "_SzanDJXjEDH"
+      },
+      "source": [
+        "#Celda 36\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "L7U5B9mGj82A"
+      },
+      "source": [
+        "####Ejercicio 15\n",
+        "Escribir una función que reciba una muestra de números en una lista y devuelva otra lista con sus cuadrados."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "866q8JKvkBn3"
+      },
+      "source": [
+        "#Celda 37\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "LRP8XBjxkaWd"
+      },
+      "source": [
+        "####Ejercicio 16\n",
+        "Escriba un programa que pida la anchura y altura de un rectángulo y lo dibuje con caracteres producto (*):\n",
+        "```\n",
+        "Anchura del rectángulo: 5\n",
+        "Altura del rectángulo: 3\n",
+        "\n",
+        "* * * * *\n",
+        "* * * * *\n",
+        "* * * * *\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "S32fUmpgkjyY"
+      },
+      "source": [
+        "#Celda 38\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "P2kZCyOpk0O0"
+      },
+      "source": [
+        "####Ejercicio 17\n",
+        "Escriba un programa que pida la anchura y altura de un rectángulo y el caracter a utilizar en el dibujo:\n",
+        "```\n",
+        "Anchura del rectángulo: 5\n",
+        "Altura del rectángulo: 3\n",
+        "Carácter a utilizar: o\n",
+        "o o o o o\n",
+        "o o o o o\n",
+        "o o o o o\n",
+        "```\n",
+        "\n",
+        "Nota: El carácter a utilizar en el dibujo se puede enviar a la función como tercer parámetro."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "3sPjq_qflAuF"
+      },
+      "source": [
+        "#Celda 39\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "dvrxktNnmWhA"
+      },
+      "source": [
+        "####Ejercicio 18\n",
+        "Escriba un programa que pida dos años y escriba cuántos años bisiestos hay entre esas dos fechas (incluidos los dos años):\n",
+        "```\n",
+        "CONTADOR DE AÑOS BISIESTOS\n",
+        "Escriba un año: 2000\n",
+        "Escriba otro año posterior a 2000: 1999\n",
+        "1999 no es mayor que 2000. Inténtelo de nuevo: 2013\n",
+        "De 2000 a 2013 hay 14 años, 4 de ellos bisiestos.\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "E0ESaUVomh0V"
+      },
+      "source": [
+        "#Celda 40\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "GOpsBjBPlJpf"
+      },
+      "source": [
+        "###Las funciones y sus alcances (scopes)\n",
+        "Comencemos con una definición:\n",
+        "\n",
+        "El alcance de un nombre (por ejemplo, el nombre de una variable) es la parte del código donde el nombre es reconocido correctamente.\n",
+        "\n",
+        "Por ejemplo, el alcance del parámetro de una función es la función en si misma. El parámetro es inaccesible fuera de la función.\n",
+        "\n",
+        "\n",
+        "Vamos a revisarlo. Observa el código en el editor. ¿Que ocurrirá cuando se ejecute?"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "dLmCpzq_lL8w"
+      },
+      "source": [
+        "#Celda 41\n",
+        "def scopeTest():\n",
+        "    x = 123\n",
+        "\n",
+        "scopeTest()\n",
+        "print(x)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "3EOtH6uFliHK"
+      },
+      "source": [
+        "###Las funciones y sus alcances (scopes): continuación\n",
+        "Comencemos revisando si una variable creada fuera de una función es visible dentro de una función. En otras palabras, ¿El nombre de la variable se propaga dentro del cuerpo de la función?\n",
+        "\n",
+        "Observa el código en el editor. Ahí esta nuestro conejillo de indias."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "k3nJAHa8lkA3"
+      },
+      "source": [
+        "#Celda 43\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "zwkd6YuAl4UG"
+      },
+      "source": [
+        "El resultado de la prueba es positivo, el código da como salida:\n",
+        "```\n",
+        "¿Conozco a la variable? 1\n",
+        "1\n",
+        "```\n",
+        "\n",
+        "La respuesta es: una variable que existe fuera de una función tiene alcance dentro del cuerpo de la función.\n",
+        "\n",
+        "Esta regla tiene una excepción muy importante. Intentemos encontrarla.\n",
+        "\n",
+        "Hagamos un pequeño cambio al código:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "DJedbcUpmHYl"
+      },
+      "source": [
+        "#Celda 44\n",
+        "def miFuncion():\n",
+        "    var = 2\n",
+        "    print(\"¿Conozco a la variable?\", var)\n",
+        "\n",
+        "var = 1\n",
+        "miFuncion()\n",
+        "print(var)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ttN8cBZOmUJG"
+      },
+      "source": [
+        "El resultado ha cambiado tambiénm el código arroja una salida con una ligera diferencia:\n",
+        "```\n",
+        "¿Conozco a la variable? 2\n",
+        "1\n",
+        "```\n",
+        "¿Qué es lo que ocurrió?\n",
+        "\n",
+        "* La variable var creada dentro de la función no es la misma que la que se definió fuera de ella, parece ser que hay dos variables diferentes con el mismo nombre.\n",
+        "* La variable de la función es una sombra de la variable fuera de la función.\n",
+        "\n",
+        "La regla anterior se puede definir de una manera mas precisa y adecuada:\n",
+        "\n",
+        "__Una variable que existe fuera de una función tiene un alcance dentro del cuerpo de la función, excluyendo a aquellas que tienen el mismo nombre.__\n",
+        "\n",
+        "También significa que __el alcance de una variable existente fuera de una función solo se puede implementar dentro de una función cuando su valor es leído.__ El asignar un valor hace que la función cree su propia variable.\n",
+        "\n",
+        "Asegúrate bien de entender esto correctamente y de realizar tus propios experimentos."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "eOgwcgtKnt6w"
+      },
+      "source": [
+        "#Celda 45\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "sBvVhnrSn9tV"
+      },
+      "source": [
+        "###Las funciones y sus alcances (scopes): la palabra reservada global\n",
+        "Al llegar a este punto, debemos hacernos la siguiente pregunta: ¿Una función es capaz de modificar una variable que fue definida fuera de ella? Esto sería muy incomodo.\n",
+        "\n",
+        "Afortunadamente, la respuesta es no.\n",
+        "\n",
+        "Existe un método especial en Python el cual puede extender el alcance de una variable incluyendo el cuerpo de las funciones para poder no solo leer los valores de las variables sino también modificarlos.\n",
+        "\n",
+        "Este efecto es causado por la palabra reservada llamada `global`\n",
+        "```python\n",
+        "global name\n",
+        "global name1, name2, ...\n",
+        "```\n",
+        "\n",
+        "El utilizar la palabra reservada dentro de una función con el nombre o nombres de las variables separados por comas, obliga a Python a abstenerse de crear una nueva variable dentro de la función; se empleará la que se puede acceder desde el exterior.\n",
+        "\n",
+        "En otras palabras, este nombre se convierte en global (tiene un alcance global, y no importa si se esta leyendo o asignando un valor).\n",
+        "\n",
+        "Observa el código en el editor.\n",
+        "\n",
+        "Se ha agregado la palabra `global` a la función."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "-pnO5auNofU5"
+      },
+      "source": [
+        "#Celda 46\n",
+        "def miFuncion():\n",
+        "    global var\n",
+        "    var = 2\n",
+        "    print(\"¿Conozco a aquella variable?\", var)\n",
+        "\n",
+        "var = 1\n",
+        "miFuncion()\n",
+        "print(var)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "PJGLH75bsAIR"
+      },
+      "source": [
+        "#Celda 47\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "xph2Eya-o6nJ"
+      },
+      "source": [
+        "###Como interactúa la función con sus argumentos\n",
+        "Ahora descubramos como la función interactúa con sus argumentos.\n",
+        "\n",
+        "El código en editor nos enseña algo. Como puedes observar, la función cambia el valor de su parámetro. ¿Este cambio afecta el argumento?\n",
+        "\n",
+        "Ejecuta el programa y verifícalo."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "1oTuXwEEo9Bl"
+      },
+      "source": [
+        "#Celda 48\n",
+        "def miFuncion(n):\n",
+        "    print(\"Yo obtuve\", n)\n",
+        "    n += 1\n",
+        "    print(\"Yo ahora tengo\", n)\n",
+        "\n",
+        "var = 1\n",
+        "miFuncion(var)\n",
+        "print(var)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "iMW0KJQypIhz"
+      },
+      "source": [
+        "La salida del código es:\n",
+        "```\n",
+        "Yo obtuve 1\n",
+        "Yo ahora tengo 2\n",
+        "1\n",
+        "```\n",
+        "\n",
+        "La conclusión es obvia - al cambiar el valor del parámetro este no se propaga fuera de la función (más específicamente, no cuando la variable es un valor escalar, como en el ejemplo).\n",
+        "\n",
+        "Esto también significa que una función recibe el valor del argumento, no el argumento en sí. Esto es cierto para los valores escalares.\n",
+        "\n",
+        "Vale la pena revisar cómo funciona esto con las listas (¿Recuerdas las peculiaridades de asignar rodajas de listas en lugar de asignar la lista entera?)\n",
+        "\n",
+        "El siguiente ejemplo arrojará luz sobre el asunto:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "mp3x8NXRpa9z"
+      },
+      "source": [
+        "#Celda 49\n",
+        "def miFuncion(miLista1):\n",
+        "    print(miLista1)\n",
+        "    miLista1 = [0, 1]\n",
+        "\n",
+        "miLista2 = [2, 3]\n",
+        "miFuncion(miLista2)\n",
+        "print(miLista2)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "KI0RE22opqKv"
+      },
+      "source": [
+        "La salida del código es:\n",
+        "```\n",
+        "[2, 3]\n",
+        "[2, 3]\n",
+        "```\n",
+        "\n",
+        "Parece ser que se sigue aplicando la misma regla.\n",
+        "\n",
+        "La diferencia se puede observar en el siguiente ejemplo:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "8jhYFXRlpzm7"
+      },
+      "source": [
+        "#Celda 50\n",
+        "def miFuncion(miLista1):\n",
+        "    print(miLista1)\n",
+        "    del miLista1[0]\n",
+        "\n",
+        "miLista2 = [2, 3]\n",
+        "miFuncion(miLista2)\n",
+        "print(miLista2)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1vjGMUrXp-Ir"
+      },
+      "source": [
+        "No se modifica el valor del parámetro miLista1 (ya se sabe que no afectará el argumento), en lugar de ello se modificará la lista identificada por el.\n",
+        "\n",
+        "El resultado puede ser sorprendente. Ejecuta el código y verifícalo:\n",
+        "```\n",
+        "[2, 3]\n",
+        "[3]\n",
+        "```\n",
+        "\n",
+        "¿Lo puedes explicar?\n",
+        "\n",
+        "Intentémoslo:\n",
+        "\n",
+        "* Si el argumento es una lista, el cambiar el valor del parámetro correspondiente no afecta la lista (Recuerda: las variables que contienen listas son almacenadas de manera diferente que las escalares).\n",
+        "* Pero si se modifica la lista identificada por el parámetro (Nota: ¡La lista no el parámetro!), la lista reflejará el cambio."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "_tJAagsTqpC8"
+      },
+      "source": [
+        "####Ejercicio 19\n",
+        "\n",
+        "¿Qué ocurrirá cuando se intente ejecutar el siguiente código?\n",
+        "```python\n",
+        "def message():\n",
+        "    alt = 1\n",
+        "    print(\"Hola, mundo!\")\n",
+        "\n",
+        "print(alt)\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Ffb0eQpVq8Be"
+      },
+      "source": [
+        "#Celda 51\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "prKeh03YrAMr"
+      },
+      "source": [
+        "####Ejercicio 20\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "a = 1\n",
+        "\n",
+        "def fun():\n",
+        "    a = 2\n",
+        "    print(a)\n",
+        "\n",
+        "fun()\n",
+        "print(a)\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "OfA0C_J0rMrL"
+      },
+      "source": [
+        "#Celda 52\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "f5_8FzzvrZtO"
+      },
+      "source": [
+        "####Ejercicio 21\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "a = 1\n",
+        "\n",
+        "def fun():\n",
+        "    global a\n",
+        "    a = 2\n",
+        "    print(a)\n",
+        "\n",
+        "fun()\n",
+        "a = 3\n",
+        "print(a)\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "NqEwWiuQrl0O"
+      },
+      "source": [
+        "#Celda 53\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UVtV5qhRrp1p"
+      },
+      "source": [
+        "####Ejercicio 22\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "a = 1\n",
+        "\n",
+        "def fun():\n",
+        "    global a\n",
+        "    a = 2\n",
+        "    print(a)\n",
+        "\n",
+        "a = 3\n",
+        "fun()\n",
+        "print(a)\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "oJ4ghn9Dr1l1"
+      },
+      "source": [
+        "#Celda 54\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "AtOyTu0kBCdN"
+      },
+      "source": [
+        "###Algunas funciones simples: continuación\n",
+        "Ahora trabajaremos con triángulos. Comenzaremos con una función que verifique si tres lados de ciertas longitudes pueden formar un triángulo.\n",
+        "![](data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBYUERYSEhUREBISHRgSEhESEhEUHBISGBQZGhgUGhkcIS4lHCArHxgYLDgnKy83NTU1HCQ7TkhAPy40NTEBDAwMEA8QHBISGDUrIyE1OjE0NDQxPDQ0NDQ0Nz80NDE0MTFANDQ0NDQ0NDQ0NDQ0NjQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIAM8A9AMBIgACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAAAQUEBgIDBwj/xABDEAABAwIBBgsFBwMCBwAAAAABAAIDBBESBSE1VHSzBgcTFhcxQZSk0tMiUVJT0RQVYXGRkpMyQoFDYiMzNHPB8PH/xAAYAQEBAQEBAAAAAAAAAAAAAAAAAgEEA//EACoRAQEAAAUFAAAEBwAAAAAAAAABAxEhMVECE0FSkRIyYYEEIqGiscHR/9oADAMBAAIRAxEAPwDdeCvBujfk+ke+jo5Hvgge97qWBznOdC0lxJbckknOrfmpQajQd0p/Ko4HaMotmp9wxXSW20U3NWh1Kg7pT+VRzVodSoO6U/lV0iZ3kUvNWh1Kg7pT+VOatDqVB3Sn8qukTXkU3NWh1Kg7pT+VRzVodSoO6U/lV0iZ3kUvNWh1Kg7pT+VOatDqVB3Sn8qukTXkU3NWh1Kg7pT+VOatDqVB3Sn8quUTO8mSl5q0OpUHdKfypzVodSoO6U/lV0ia8im5q0OpUHdKfypzVodSoO6U/lVyiZ3kyUvNWh1Kg7pT+VOatDqVB3Sn8qukTXkUvNWh1Kg7pT+VTzVodSoO6U/lVyiZ3kU3NWh1Kg7pT+VRzVodSoO6U/lV0iZ3kUvNWh1Kg7pT+VTzVodSoO6U/lVyiZ3kU3NWh1Kg7pT+VRzVodSoO6U/lV0iZ3kUvNWh1Kg7pT+VTzVodSoO6U/lVyiZ3kU3NWh1Kg7pT+VOalBqNB3Sn8quVKa8j5944aGKnyhGyCKGBhga8sijZGC4zSjFZotewAv+CLJ489JRbOzfTIuvp6rOmaor1/gfo2i2an3DFcqm4H6Notmp9wxXK5PNWlERAREQEREBERAREQEREBEUIJRRdEEoiICIiAiIgIiICIiAoUqEHg/HnpKLZ2b6ZE489JRbOzfTIrmyLu9f4H6Notmp9wxXKpuB+jaLZqfcMVyo81aUREBERAREQEREBERAREQF0VEoY0vdma0Fzja9gBcld6qOEVNJJTmKEXdIWscceAtjJ9twPaQL5u1Zc8tFdHTOrqktyl88Org3lttXE6QNwOa90bmXcbWztNyBe7S09Wa9uxXYWu5LoJoqp7nkSRSMbd49gNkZ7IAZc3u3rd+A/wAbC0LOjOzVeNOj8dvRt/j9P22/q5IiKnkIiICIiAiIgIiIChSoQeD8eekotnZvpkTjz0lFs7N9MiubIu71/gfo2i2an3DFcqm4H6Notmp9wxXKjzVpREQEREBERAREQEREBERAXXI6wuSBbOSTaw965EqrnHLycmM8UZDpSM4e8dUJ7M2Ynr7OpNxjcGcryVDZDNF9ncx+GNpJJfEWhzJbHsNz+hV8FS5UHIyMqQPZbaGosP8ARc6zXmw/seQbkhrWvkd2K4b/AO/ktrbc7s5oiLGCIiAiIgIiICIiAoUqEHg/HnpKLZ2b6ZE489JRbOzfTIrmyLu9f4H6Notmp9wxXKpuB+jaLZqfcMVyo81aUREBERAREQEREBERAUEosesqmxRuleTgYC51gSbAdQAzk/ggx8o1Tm2jisZ335MEXAAtikd7mi/X7yBnJssiip2xsDG3wt6iTckk3JP4kkrGoKd2J0sgHKSdTevkY81ogRmOcEkjrJ7QAVYgIOmeFr2Fjw17Hgtc14Dg5rhYtIOYgi9wqzIszml9HI50j6YMwSuJLp6ZzSI5n/78TJGOz3Loy6zQ9oFyVS5cj5MsrACXU2ISAC96V+Hl2gAE5sLJAAC4mINFsRSC6Urg38M4XNAREQEREBERAREQFClQg8H489JRbOzfTInHnpKLZ2b6ZFc2Rd3r/A/RtFs1PuGK5VNwP0bRbNT7hiuVHmrSiIgIiICIiAiIgIouhKCHdX/j3qpjH2iUPNxDTvvEb5p3hljJmOdjS9wAP9zcXY0nnXTufKKaI4XEB9Q4GzooHCQNLf8Ac57CB7gHHMQL51NA2NjWMa1jGBrGMAsGNAADQOwAAfog7QFyREBcXBclBCCnyRaE/ZD/AExtxQH2QDBjIEYA+WCxv5FnaSrgFVuV4yGtmYLvgPKAD+5lrPZ7s7SevqNj2LNgka5oe04mvAc0+9pFwf0KXkdyLpqJmsY6RxwsYC9zjfM1ouT+gXCkqmyxtljcHska17HC9nMcLtOf3ghBkooBUoCIiAiIgKFKhB4Px56Si2dm+mROPPSUWzs30yK5si7vX+B+jaLZqfcMVyqbgfo2i2an3DFcqPNWlERAREQEREBUnCvKzqSkfOxrXvBjY0OvhDpJWxhzgM5ALr2uL2tcdau1hZRoo54nRTMEkb/6mm4zg3BBGdpBAIIIIIBGdB15N5cYhUmB5B9iSBsjA9tv7o3F2Ag3Fg51+vN1LnlGs5JmK2Nzi1jI72L3uNg38uskgGwa42Nl00GTYaZrywFuM8pLJJJJI5xDbYnySOc51gLZzmGZRQMMj/tLwW4m4YmHrjjJuXG/U52a9s1g0Z7XT9R3ZNpeTZnOOR3tSy2tyklgC62ewzWA6gAAMyz1xaFyQEREBERBxc26q6M8jKac/wBBBkgvf3kvZftIJuBnNj+StlW5WhcWCRgvJEeUZa/tW/qZmzkObcW7TZBHCP8A6Kp/7M26ctF4vK4meCKGZ81M3J8D528qZmwVuMNDLknknYcXsC1w3qzL0Slna+Nr252vGIdRzHsXcBnug5BSoAUoCIiAiIgKFKhB4Px56Si2dm+mROPPSUWzs30yK5si7vX+B+jaLZqfcMVyqbgfo2i2an3DFcqPNWlERAREQEREBQUJVdlSpIAiiNpprtjNrhgAJdI4fCB+pLR2hB1yjl5HRdcMduVPxSCzmxfkAQTb8ArUBdFLA1jQ1uYdefOST1uJ7SVkICIiAiIgIiICghSiCopzyM/I/wCnKHSRHP7L8Xtx+4D2gWj8SOxWrVgZWpXPj/4dhLGRJCSbASNvYE2Ng4FzSbXs4rtoKtssbJG3AeA7C4EOabZ2uac7XA5iDnBFk/UZiKFKAiIgIiIChSoQeD8eekotnZvpkTjz0lFs7N9MiubIu71/gfo2i2an3DFcqm4H6Notmp9wxXKjzVpREQEREBQVKgoMWtq2xML3nC0WzgFxJLg1rWgAlzi4gNaAS4kAAnMsXJFO8AzTAtnnwvfGS13INwttAHC9w03ub2LnPcLAgDHpR9pnbUddNDZ9K7MOVmcyRj6gWzujwPwsOYOxSOsRybleAJsAClEQEREBERAREQEREEWVIDyFU2MezDV48DQLBlYMcr82c/8AEaJHdQaDC4m7pFeKvyvRcvC+IO5N5wujkw4uSmY4Pilw3Adhkax2E5jhscxQZ4UqvyTW8tC2QtwPOJskeLFyczHFkkeKwxYXtcMQFja4zELPBTYSiIgIiIChSoQeD8eekotnZvpkTjz0lFs7N9MiubIu71/gfo2i2an3DFcqm4H6Notmp9wxXKjzVpREQEWNPVMZbG5jL9WNzW399rlcoalrxdrmvHVia4OF/wAwhq7iqyvkMjvszHOYSGvle02LYi7+kH4nhrhmsWgk3Bw36OEWX46ONjpMRdK4RRhrS673dV7ZwO3/AAuqhypBG03fI5ziXvfyM/tPJz29nMOwDsAAWxuVmq7iiawBrQGtaA1rQAA1oFgAB1Bdqq/v6D4n/wAM/lT7+g+J/wDDP5FmV4YtEVX9+wfE4fnFMB/kluZd33tT/Pp/5o/qgzkWD97U/wA+n/mj+qfe1P8APp/5o/qgzkWD97U/z6f+aP6p97U/z6f+aP6oM5Fg/e1P8+n/AJo/qn3tT/Pp/wCaP6oM5FgnK1P8+n/mj+qyYZQ5oc0hzT1OaQQR7wR1oO1cSFyUIKedvIVAeM0VW7DNmHs1GFjY5MXYHNYGEZ7nk7W9om4Cxa+mEsbo3Xs8EXBILT2OBHUQc9/wXRkuuxswvLeWj9iZgIBDx/dhvmDhZw/BwWiyRccSkFYJREQFClQg8H489JRbOzfTInHnpKLZ2b6ZFc2Rd3r/AAP0bRbNT7hiuVTcD9G0WzU+4YrlR5q0qCpRBp/CVhOUKANwXtU/8xpc0WjZ/UAR/wDbLt4Li1TWtdbG18d8Awx54hYsabkfjnOdX1Zk6GUtM0UUxZfCZGMfhva9sQNr2H6LlR0UcLcEUbIm3xYWMa0XPWbAWvmCidP82bp6v4iXCmHltMv7rf8AbtfE02uAbZxcDMfeubQuVksrc2oilEHEi66vsjPgj/Y36LvRYMf7JH8Ef7G/RPskfwR/sb9FkItFPlaeGnYHvhxgnDaOJht2lz3us1jQAbuc4D/JAXHItXT1cInhYwsJLc8bMzmuIc3NcGxHWCQewqeEWSDUsjDXiMxSNmDZGGWOQtvZssYc3E0E3HtCzmg9ijgxkc0kBidI2ZznyTOe2MxjFI8vIDC51gCfegsvskfwR/sb9E+yR/BH+xv0WQiDH+xx/BH+xv0WJJkOmc4udDG5zs5Jb1qzRBV836b5EX7U5v03yIv2q0RM6Krm/TfIi/auGTuD9PTzSTQs5N8wAfZzsJA6rNJsOrsVwosmbZbNlDlOukNVFSRu5LGx0zpMLXHC04cDQcwJJBub9SssmNkEYE5a6QFwLmCwc0OOF1uwkWJHvusLKWS3PlZUQvbFPGCwOewysdESCWOYHNPWAQQQc3uzLMyXTujia2SR077uc6RwAxOc4kgDsaL2A7AAFM3r06r0/gmX785/8ZyIip5ChSoQeD8eekotnZvpkTjz0lFs7N9MiubIu71/gfo2i2an3DFcqm4H6Notmp9wxXKjzVpREQEREBERAREQEREBERBBCAKUQEREBERAREQEREHEhSFKIZCIiAoUqEHg/HnpKLZ2b6ZE489JRbOzfTIrmyLu9f4H6Notmp9wxXK884OcYOT4aGmikqcMkUMMT2chUus9sTWltwyxzg5wbKz6TMl614er9NbcHEz/ACX5VZxuKLTukzJeteHq/TTpMyXrXh6v007OJ6X5W6NxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxRad0mZL1rw9X6adJmS9a8PV+mnZxPS/KaNxULT+kzJeteHq/TTpMyXrXh6v007OJ6X4aPN+PPSUWzs30yKs41stwVlbHNSy8rG2FsZdglZ7YllJFnNB6nDOi9JhdeX5b8S//9k=)\n",
+        "\n",
+        "En la escuela aprendimos que la suma arbitraria de dos lados tiene que ser mayor que la longitud del tercer lado.\n",
+        "\n",
+        "No será algo difícil. La función tendrá tres parámetros - uno para cada lado.\n",
+        "\n",
+        "Regresará True si todos los lados pueden formar un triángulo, y False de lo contrario. En este caso, esUnTringulo es un buen nombre para dicha función.\n",
+        "\n",
+        "\n",
+        "Observa el código en el editor. Ahí se encuentra la función. Ejecuta el programa.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ddOoGFQqCEch"
+      },
+      "source": [
+        "#Celda 55\n",
+        "def esUnTriangulo(a, b, c):\n",
+        "    if a + b <= c:\n",
+        "        return False\n",
+        "    if b + c <= a:\n",
+        "        return False\n",
+        "    if c + a <= b:\n",
+        "        return False\n",
+        "    return True\n",
+        "\n",
+        "print(esUnTriangulo (1, 1, 1))\n",
+        "print(esUnTriangulo (1, 1, 3))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "mCnQOFldCXs9"
+      },
+      "source": [
+        "#Celda 56\n",
+        "def esUnTriangulo(a, b, c):\n",
+        "    if a + b <= c or b + c <= a or c + a <= b:\n",
+        "    \n",
+        "        return False\n",
+        "    return True\n",
+        "\n",
+        "print(esUnTriangulo(1, 1, 1))\n",
+        "print(esUnTriangulo(1, 1, 3))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "9XOmhjYdHpea"
+      },
+      "source": [
+        "###Algunas funciones simples: factoriales\n",
+        "La siguiente función a definir calcula factoriales. ¿Recuerdas cómo se calcula un factorial?\n",
+        "```\n",
+        "0! = 1 (¡Si!, es verdad.)\n",
+        "1! = 1\n",
+        "2! = 1 * 2\n",
+        "3! = 1 * 2 * 3\n",
+        "4! = 1 * 2 * 3 * 4\n",
+        ":\n",
+        ":\n",
+        "n! = 1 * 2 ** 3 * 4 * ... * n-1 * n\n",
+        "```\n",
+        "\n",
+        "Se expresa con un signo de exclamación, y es igual al producto de todos los números naturales previos al argumento o número dado.\n",
+        "\n",
+        "Escribamos el código. Creemos una función con el nombre `factorialFun`. Aquí esta el código:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "vWfdnANBH78_"
+      },
+      "source": [
+        "#Celda 57\n",
+        "def factorialFun(n):\n",
+        "    if n < 0:\n",
+        "        return None\n",
+        "    if n < 2:\n",
+        "        return 1\n",
+        "    \n",
+        "    producto = 1\n",
+        "    for i in range(2, n + 1):\n",
+        "        producto *= i\n",
+        "    return producto\n",
+        "\n",
+        "for n in range(1, 6): # probando\n",
+        "    print(n, factorialFun(n))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "YpKeTfGHIMTn"
+      },
+      "source": [
+        "###Recursividad\n",
+        "Existe algo mas que se desea mostrar: es la recursividad.\n",
+        "\n",
+        "Este termino puede describir muchos conceptos distintos, pero uno de ellos, hace referencia a la programación computacional.\n",
+        "\n",
+        "Aquí, la recursividad es una técnica donde una función se invoca a si misma.\n",
+        "\n",
+        "Tanto el factorial como la serie Fibonacci, son las mejores opciones para ilustrar este fenómeno."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "G0Vd74w2IrRG"
+      },
+      "source": [
+        "#Celda 58\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "uOtATLE5IopP"
+      },
+      "source": [
+        "#Celda 59\n",
+        "def factorialFun(n):\n",
+        "    if n < 0:\n",
+        "        return None\n",
+        "    if n < 2:\n",
+        "        return 1\n",
+        "    return n * factorialFun(n - 1)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "L6tagt7LN6ya"
+      },
+      "source": [
+        "####Ejercicio 5\n",
+        "\n",
+        "¿Qué ocurrirá al intentar ejecutar el siguiente fragmento de código y porque?\n",
+        "```python\n",
+        "def factorial(n):\n",
+        "    return n * factorial(n - 1)\n",
+        "\n",
+        "print(factorial(4))\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "9XM9KOa7OGh7"
+      },
+      "source": [
+        "#Celda 60\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "PtpsjNjwOPmV"
+      },
+      "source": [
+        "####Ejercicio 6\n",
+        "\n",
+        "¿Cuál es la salida del siguiente fragmento de código?\n",
+        "```python\n",
+        "def fun(a):\n",
+        "    if a > 30:\n",
+        "        return 3\n",
+        "    else:\n",
+        "        return a + fun(a + 3)\n",
+        "\n",
+        "print(fun(25))\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "fh1bemtHiSod"
+      },
+      "source": [
+        "#Celda 61"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "I2fYzsBOBqSg"
+      },
+      "source": [
+        "## TUPLAS Y DICCIONARIOS\n",
+        "\n",
+        "![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7byz9fiN8frmbK5nhYgMkNFLZX7LGJRiEZQ&usqp=CAU)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "YynzSlbVJgOb"
+      },
+      "source": [
+        "## TUPLAS"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "pa_iyBinJl35"
+      },
+      "source": [
+        "#Celda 62\n",
+        "tup1=(\"a\",\"b\",\"c\")\n",
+        "tup2=\"a\",\"b\",\"c\"\n",
+        "print(tup1,tup2)\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "mNbYN_fAMIw2"
+      },
+      "source": [
+        "tupla con un solo elemento"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "pUS5piPVL44V"
+      },
+      "source": [
+        "#Celda 63\n",
+        "tup3=(\"u\",)\n",
+        "print(tup3)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "5xlD-CnoKzXX"
+      },
+      "source": [
+        "### Accediendoa los elementos de una tupla:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "FjgrT1TxKCQ_"
+      },
+      "source": [
+        "#Celda 64\n",
+        "tup1=(\"a\",\"b\",\"c\")\n",
+        "print(tup1[1])"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "nvVk_Ki-Mgi-"
+      },
+      "source": [
+        "#Celda 65\n",
+        "tup1=(\"a\",\"b\",\"c\")\n",
+        "print(tup1[:2])\n",
+        "print(tup1)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "h4-kL2XCK-Q_"
+      },
+      "source": [
+        "### ."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "CUGB_wytLDI_"
+      },
+      "source": [
+        "### Las tuplas son inmutables"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "MEw3YWn7KQEb"
+      },
+      "source": [
+        "#Celda 66\n",
+        "tup1=(\"a\",\"b\",\"c\")\n",
+        "tup1[1]=\"y\""
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Jps69wxfKp1V"
+      },
+      "source": [
+        "#Celda 67\n",
+        "tup1=(\"a\",\"b\",\"c\")\n",
+        "#del tup1[1]"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4P4-gyr-PgKe"
+      },
+      "source": [
+        "."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "NaQ_-P6DPikb"
+      },
+      "source": [
+        "### Manejando tuplas"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "xWVK49GWPml_"
+      },
+      "source": [
+        "#Celda 68\n",
+        "var=\"x\"\n",
+        "t1=(\"a\",)\n",
+        "t2=(\"b\",)\n",
+        "t3=(\"c\",var)\n",
+        "t1,t2,t3=t2,t3,t1 \n",
+        "print(t1,t2,t3)\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "8T-tFOTBQZcM"
+      },
+      "source": [
+        "#Celda 69\n",
+        "t1=(\"x\",\"y\",\"z\")\n",
+        "print(\"y\" in t1 )\n",
+        "print(\"u\" not in t1)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "yBvzj0vLRUky"
+      },
+      "source": [
+        "#Celda 70\n",
+        "t1=[1,2,3]\n",
+        "print(t1)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "LtIiNyq0URlF"
+      },
+      "source": [
+        "## DICCIONARIOS\n",
+        "![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ6g5H6JF3O4kGXxRDMYGGeG6kmuX_s2VqtA&usqp=CAU)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "96zAcWTtUWe4"
+      },
+      "source": [
+        "### Definiendo un diccionario"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "RCfk4diXU2gd"
+      },
+      "source": [
+        "#Celda 71\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "print(dic1)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "msGIvjlqVks_"
+      },
+      "source": [
+        "#Celda 72\n",
+        "dic2={}\n",
+        "print(dic2)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "34Q4OJ4jWQNr"
+      },
+      "source": [
+        "."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Ha9whLS4WSct"
+      },
+      "source": [
+        "### Accediando a los valores de un diccionario"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "TCIyw4-yWYWD"
+      },
+      "source": [
+        "#Celda 73\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "print(dic1[\"edad\"])"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "A9QfUP9pWx0N"
+      },
+      "source": [
+        "#Celda 74\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "print(\"nombre\" in dic1)\n",
+        "print(\"apelldo\" in dic1)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "oG7nbgiGXPON"
+      },
+      "source": [
+        "#Celda 75\n",
+        "dic1={\"nombre\":\"Carlos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "keys=[\"nombre\",\"apellido\",\"edad\",\"peso\",\"soltero\"]\n",
+        "for k in keys:\n",
+        "    if k in dic1:\n",
+        "        print(k,\"->\",dic1[k])\n",
+        "    else:\n",
+        "        print(k,\"no está en el diccionario\")\n",
+        "        "
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "VSFH3VLnZThb"
+      },
+      "source": [
+        "."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "bvztB3SwZW96"
+      },
+      "source": [
+        "### Método keys()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "vW83snYyZjS3"
+      },
+      "source": [
+        "#Celda 76\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "print(list(dic1.keys()))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "DHUgWTSWaGp2"
+      },
+      "source": [
+        "#Celda 77\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "for key in dic1.keys():\n",
+        "    print(key,\"->\",dic1[key])"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UPAuGYCFafGL"
+      },
+      "source": [
+        "."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "dXiJqYNbagyD"
+      },
+      "source": [
+        "### Función sorted()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "TfDOIhB6ap6V"
+      },
+      "source": [
+        "#Celda 78\n",
+        "for key in sorted(dic1):\n",
+        "    print(\"key\",\"->\",dic1[key])"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "sj3NYErubcmb"
+      },
+      "source": [
+        "."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "RoHnRdSCbeXB"
+      },
+      "source": [
+        "### Métodos items() y values()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Pxukv5GOcFLT"
+      },
+      "source": [
+        "#Celda 79\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "print(dic1.items())"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "shnH0SrMcWRn"
+      },
+      "source": [
+        "#Celda 80\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "for x,y in dic1.items():\n",
+        "    print(x,\"->\",y)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "IyZ18XLscwoC"
+      },
+      "source": [
+        "#Celda 81\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "for n in dic1.values():\n",
+        "    print(n)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "iYDr4YdSd8RI"
+      },
+      "source": [
+        "."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "vpzKXJDEd9t3"
+      },
+      "source": [
+        "### Modificar, agregar y eliminar valores de un diccionario"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "FE0SQDs2eHyh"
+      },
+      "source": [
+        "#Celda 82\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "dic1[\"edad\"]=33\n",
+        "print(dic1)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "KSZpTxOoeXa2"
+      },
+      "source": [
+        "#Celda 83\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "dic1[\"oficio\"]=\"informatico\"\n",
+        "print(dic1)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "i4z3xZSge1gT"
+      },
+      "source": [
+        "#Celda 84\n",
+        "dic1={\"nombre\":\"Cralos\",\"edad\":32,\"peso\":60,\"soltero\":True}\n",
+        "del dic1[\"soltero\"]\n",
+        "print(dic1)\n",
+        "print(\" fin de clase\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "WM5i_c6xfOlc"
+      },
+      "source": [
+        "####Ejercicio 7\n",
+        "\n",
+        "Escribir un programa que guarde en un diccionario los precios de las frutas de la tabla, pregunte al usuario por una fruta, un número de kilos y muestre por pantalla el precio de ese número de kilos de fruta. Si la fruta no está en el diccionario debe mostrar un mensaje informando de ello.\n",
+        "\n",
+        "| Fruta | Precio|\n",
+        "|:-|:-:|\n",
+        "|Plátano | 1.35 |\n",
+        "|Manzana | 0.80|\n",
+        "|Pera| 0.85|\n",
+        "|Naranja | 0.70|\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "BUXB1ZebfPyq"
+      },
+      "source": [
+        "#Celda 85\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
